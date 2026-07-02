@@ -16,6 +16,8 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
