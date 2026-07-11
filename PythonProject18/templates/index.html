@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if current_user.is_authenticated %}
+<div style="position: absolute; top: 70px; right: 20px; width: 250px; padding: 15px; border: 1px solid #ddd; background-color: #2E8B57; border-radius: 10px;">
+    <h5>ჩემი სიახლეები:</h5>
+    <ul style="list-style-type: none; padding-left: 0;">
+        {% for news in current_user.news %}
+            <li style="margin-bottom: 5px; font-size: 0.9em;">- {{ news.title }}</li>
+        {% else %}
+            <li>ჯერ სიახლეები არ დაგიმატებიათ.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">აირჩიეთ კატეგორია</h1>
+    <p class="text-muted">გაიგეთ მეტი თქვენთვის საინტერესო სფეროების შესახებ</p>
+</div>
+
+<div class="row g-4 justify-content-center">
+    <div class="col-md-5">
+        <a href="{{ url_for('category', cat='agriculture') }}" class="btn btn-outline-primary w-100 cat-btn">სოფლის მეურნეობა</a>
+    </div>
+    <div class="col-md-5">
+        <a href="{{ url_for('category', cat='tech') }}" class="btn btn-outline-primary w-100 cat-btn">ციფრული ტექნოლოგიები</a>
+    </div>
+    <div class="col-md-5">
+        <a href="{{ url_for('category', cat='sport') }}" class="btn btn-outline-primary w-100 cat-btn">სპორტი</a>
+    </div>
+    <div class="col-md-5">
+        <a href="{{ url_for('category', cat='science') }}" class="btn btn-outline-primary w-100 cat-btn">მეცნიერება</a>
+    </div>
+</div>
+
+{% endblock %}
